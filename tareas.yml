@@ -1,0 +1,11 @@
+- hosts: localhost
+  become: true #con esta linea todo el playbook iria como super user
+  tasks:
+  - name: install vim
+    apt: name=vim state=present
+    #become: true #correr tarea como super user
+  - name: saludar
+    shell: echo hola #saluda con un echo hola
+  - name: detener nginx
+    service: name=nginx state=stopped #detiene el servicio nginx usando el modulo service
+  

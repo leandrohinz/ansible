@@ -1,0 +1,13 @@
+---
+
+- hosts: localhost
+  remote_user: ubuntu
+  become: true
+  tasks:
+  - name: Instala Apache2
+    apt: name=apache2 state=present update_cache=true
+    notify:
+      - "Reinicia el servidor web"
+  handlers:
+  - name: Reinicia el servidor web
+    service: name=apache2 state=restarted
